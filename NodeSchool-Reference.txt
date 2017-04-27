@@ -1,0 +1,59 @@
+Node.js Syntax Reference Guide
+-------------------------
+
+--------------------------------------------------
+## 1 - HELLO WORLD ##
+--------------------------------------------------
+
+Use the node command to run .js file extension files.
+
+--------------------------------------------------
+## 2 - BABY STEPS ##
+--------------------------------------------------
+
+You can log to the console using `console.log(args);` just like in normal js.
+
+You can access command-line arguments using the global `process` object. This 
+    has an argv property - an array containing the complete CLI.
+
+--------------------------------------------------
+## 3 - MY FIRST I/O! ##
+--------------------------------------------------
+
+Load a module using `var moduleVar = require('module')`
+
+All synchronous/blocking filesystem methods in `fs` end with Sync.
+
+To read a file, you'll need to use fs.readFileSync('/path/to/file')
+
+Returns a `Buffer` object containing the complete contents of the file
+
+`Buffer` objects are Nodes way of efficiently represneting arbitrary 
+    arrays of data - ascii, binary, or any other format
+
+`Buffer`s can be converted to strings by calling the toString() method on 
+    them - e.g. `var str = buf.toString()`
+
+To count newlines, consider that a String can be .split() into an array of 
+    substrings and `\n` can be used as a delimiter.
+
+--------------------------------------------------
+## 4 - MY FIRST ASYNC I/O ##
+--------------------------------------------------
+
+To read files asynchronously, use readFile()
+
+Instead of using the return value of this method, you need to collect the value 
+    from a callback function passed in as a second argument. Idiomatic Node callbacks have the signature `function callback (err, data) {codeblock}`
+
+    Errors make `err` truthy.
+
+    If there is no error, you should have your buffer object as the second 
+        argument
+
+--------------------------------------------------
+## 5 - FILTERED LS ##
+--------------------------------------------------
+
+fs.readdir(path, callback) is an async method that returns a list of filename 
+    strings in the path and executes the callback function when finished
